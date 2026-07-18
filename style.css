@@ -1,0 +1,249 @@
+/* ================= 기본 초기화 및 모바일 가이드 설정 ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "애플 SD 산돌고딕 Neo", sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    overflow-wrap: break-word;
+    -webkit-text-size-adjust: 100%;
+}
+
+html {
+    height: -webkit-fill-available;
+}
+
+body {
+    background-color: #f1f5f9;
+    color: #1e293b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+    min-height: -webkit-fill-available;
+}
+
+/* 📱 최신 스마트폰 화면 규격 맞춤 앱 컨테이너 */
+.app-container {
+    width: 100%;
+    max-width: 430px;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 932px;
+    background-color: #f8fafc;
+    box-shadow: 0 14px 45px rgba(15, 23, 42, 0.15);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ================= [0] 최초 실행용 이름 입력 팝업창 스타일 ================= */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    background-color: rgba(15, 23, 42, 0.88);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    transition: opacity 0.3s ease;
+}
+.modal-card {
+    background: #ffffff;
+    width: 85%;
+    max-width: 360px;
+    padding: 35px 24px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes zoomIn {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+.modal-icon { font-size: 3.8rem; margin-bottom: 16px; }
+.modal-card h2 { font-size: 1.55rem; font-weight: 800; color: #0f172a; margin-bottom: 10px; }
+.modal-card p { font-size: 0.92rem; color: #64748b; line-height: 1.55; margin-bottom: 24px; }
+.modal-form input {
+    width: 100%; padding: 15px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; text-align: center; outline: none; margin-bottom: 14px; transition: all 0.2s;
+}
+.modal-form input:focus { border-color: #3b82f6; box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1); }
+.btn-modal-submit {
+    width: 100%; padding: 15px; background: #3b82f6; color: white; border: none; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer;
+}
+.btn-modal-submit:active { background: #2563eb; }
+
+/* ================= 상단 고정 헤더 영역 ================= */
+.app-header {
+    padding: 18px 20px;
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.app-header h1 { font-size: 1.2rem; font-weight: 700; color: #0f172a; }
+
+/* ================= 메인 콘텐츠 및 탭 전환 애니메이션 ================= */
+.app-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    padding-bottom: 100px;
+}
+
+.page {
+    display: none;
+    animation: slideUp 0.35s cubic-bezier(0.1, 1, 0.1, 1);
+}
+.page.active { display: block; }
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= 공통 카드 UI 컴포넌트 ================= */
+.card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 16px;
+    border: 1px solid #e2e8f0;
+}
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.card-header h3 { font-size: 1.05rem; font-weight: 700; color: #334155; }
+
+.badge { padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
+.badge-info { background: #e0f2fe; color: #0284c7; }
+.badge-danger { background: #fee2e2; color: #dc2626; }
+
+.section-title { margin-bottom: 22px; }
+.section-title h2 { font-size: 1.4rem; font-weight: 800; color: #0f172a; }
+.section-title p { font-size: 0.88rem; color: #64748b; margin-top: 4px; }
+
+.empty-text { font-size: 0.88rem; color: #94a3b8; text-align: center; padding: 20px 0; }
+
+/* ================= 🏠 [1] 홈 화면 스타일 ================= */
+.user-welcome { margin-bottom: 24px; }
+.user-welcome h2 { font-size: 1.55rem; font-weight: 900; color: #0f172a; word-break: keep-all; }
+.user-welcome p { font-size: 0.92rem; color: #64748b; margin-top: 4px; word-break: break-word; }
+
+.chart-container { display: flex; justify-content: center; padding: 12px 0; }
+.chart-placeholder {
+    width: 165px; height: 165px; border-radius: 50%;
+    background: radial-gradient(circle, #fff 68%, transparent 69%), conic-gradient(#3b82f6 0% 75%, #ef4444 75% 85%, #f59e0b 85% 100%);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    transition: background 0.4s ease;
+}
+.chart-value { font-size: 1.65rem; font-weight: 800; color: #1e3a8a; }
+.chart-label { font-size: 0.78rem; color: #64748b; }
+
+.chart-legend { display: flex; justify-content: center; gap: 16px; margin-top: 18px; font-size: 0.85rem; color: #475569; }
+.legend-item { display: flex; align-items: center; gap: 6px; }
+.dot { width: 9px; height: 9px; border-radius: 50%; }
+.dot.safe { background: #3b82f6; }
+.dot.warning { background: #f59e0b; }
+.dot.danger { background: #ef4444; }
+
+.status-guide { text-align: center; font-size: 0.72rem; color: #94a3b8; margin-top: 12px; }
+
+.status-list { display: flex; flex-direction: column; gap: 10px; }
+.status-item { display: flex; justify-content: space-between; align-items: center; padding: 14px; border-radius: 12px; background: #f8fafc; border: 1px solid #f1f5f9; gap: 10px; }
+.food-info { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+.food-icon { flex-shrink: 0; font-size: 1.25rem; }
+.food-name { font-size: 0.95rem; font-weight: 600; color: #334155; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.urgent-alert { flex-shrink: 0; color: #ef4444; font-weight: 800; font-size: 0.85rem; }
+.warning-alert { flex-shrink: 0; color: #d97706; font-weight: 800; font-size: 0.85rem; }
+
+/* ================= 📷 [2] 식품 등록 화면 스타일 ================= */
+.camera-box {
+    width: 100%; height: 190px; background: #f1f5f9; border: 2px dashed #cbd5e1; border-radius: 16px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; margin-bottom: 16px;
+    position: relative; overflow: hidden;
+}
+.camera-box:active { background: #e2e8f0; transform: scale(0.98); }
+#camera-placeholder { display: flex; flex-direction: column; align-items: center; }
+.camera-inner-icon { font-size: 2.4rem; margin-bottom: 8px; }
+.camera-text { font-size: 1.02rem; font-weight: 700; color: #475569; }
+.camera-subtext { font-size: 0.78rem; color: #94a3b8; margin-top: 4px; text-align: center; padding: 0 10px; }
+
+.btn-scan {
+    width: 100%; padding: 13px; background: #eef2ff; color: #4f46e5; border: 1.5px solid #c7d2fe; border-radius: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; margin-bottom: 24px;
+}
+.btn-scan:disabled { opacity: 0.6; }
+
+.form-container { display: flex; flex-direction: column; gap: 16px; }
+.form-group label { display: block; font-size: 0.88rem; font-weight: 600; color: #475569; margin-bottom: 6px; }
+.form-group input, .form-group select {
+    width: 100%; padding: 13px 14px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 16px; color: #334155; background-color: #ffffff; outline: none;
+}
+.form-group input:focus, .form-group select:focus { border-color: #3b82f6; }
+
+.form-group input.input-warning {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+.field-warning {
+    color: #ef4444;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 6px;
+}
+
+.btn-submit {
+    width: 100%; padding: 15px; background: #3b82f6; color: white; border: none; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+/* ================= 🍳 [3] 레시피 추천 화면 스타일 ================= */
+.food-list { display: flex; flex-direction: column; gap: 10px; }
+.food-list-item { display: flex; justify-content: space-between; align-items: center; padding: 14px 12px; background: #f8fafc; border-radius: 14px; border: 1px solid #edf2f7; gap: 10px; }
+.food-details { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+.food-img-emoji { flex-shrink: 0; width: 42px; height: 42px; background: #ffffff; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.45rem; }
+.food-main-name { font-size: 0.95rem; font-weight: 700; color: #1e293b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.food-sub-info { font-size: 0.75rem; color: #94a3b8; margin-top: 2px; }
+
+.d-day { flex-shrink: 0; padding: 5px 12px; border-radius: 12px; font-size: 0.8rem; font-weight: 800; }
+.d-day.danger { background: #fee2e2; color: #ef4444; }
+.d-day.warning { background: #fef3c7; color: #d97706; }
+.d-day.safe { background: #f1f5f9; color: #64748b; }
+
+.delete-btn {
+    flex-shrink: 0; background: none; border: 1px solid #e2e8f0; color: #94a3b8; padding: 5px 10px; border-radius: 8px; font-size: 0.75rem; cursor: pointer;
+}
+.delete-btn:active { background: #f1f5f9; }
+
+.ai-button-wrapper { margin-top: 25px; position: sticky; bottom: 0; background: linear-gradient(to top, #f8fafc 85%, transparent); padding: 12px 0; }
+.btn-ai-recipe {
+    width: 100%; padding: 16px; background: linear-gradient(135deg, #6366f1, #a855f7); color: white; border: none; border-radius: 14px; font-size: 1.05rem; font-weight: 700; cursor: pointer; box-shadow: 0 6px 20px rgba(147, 51, 234, 0.3); display: flex; justify-content: center; align-items: center; gap: 8px;
+}
+.btn-ai-recipe:disabled { opacity: 0.7; }
+
+.ai-result-card pre {
+    white-space: pre-wrap;
+    line-height: 1.6;
+    font-size: 0.88rem;
+    color: #334155;
+}
+
+/* ================= 📱 하단 고정 모바일 전용 탭 바 ================= */
+.app-navbar {
+    position: absolute; bottom: 0; left: 0; right: 0; min-height: 78px; background: #ffffff; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; align-items: center; padding-bottom: calc(14px + env(safe-area-inset-bottom)); z-index: 20;
+}
+.nav-item { flex: 1; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; color: #94a3b8; }
+.nav-icon { font-size: 1.4rem; }
+.nav-text { font-size: 0.78rem; font-weight: 600; }
+.nav-item.active { color: #3b82f6; }

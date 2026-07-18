@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>냉장고 파먹기</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="name-modal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-icon">🍳</div>
+            <h2>반가워요!</h2>
+            <p>스마트하게 재료를 관리하고 파먹기 위해<br>사용하실 이름을 입력해 주세요.</p>
+            <div class="modal-form">
+                <input type="text" id="user-name-input" placeholder="이름 입력 (예: 민우)" maxlength="10">
+                <button type="button" id="btn-modal-submit" class="btn-modal-submit">냉장고 문 열기</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <header class="app-header">
+            <h1 id="app-title">홈 현황</h1>
+        </header>
+
+        <main class="app-content">
+
+            <!-- ================= 홈 ================= -->
+            <div id="page-home" class="page active">
+                <div class="user-welcome">
+                    <h2>냉장고 파먹기</h2>
+                    <p><span id="welcome-name">사용자</span>님의 냉장고 속 식재료 현황입니다.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>📊 우리 집 냉장고 통계</h3>
+                        <span class="badge badge-info">실시간</span>
+                    </div>
+                    <div class="chart-container">
+                        <div class="chart-placeholder" id="chart-placeholder">
+                            <span class="chart-value" id="chart-value">0%</span>
+                            <span class="chart-label">안전 수준</span>
+                        </div>
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item"><span class="dot safe"></span>안전 (<span id="count-safe">0</span>)</div>
+                        <div class="legend-item"><span class="dot warning"></span>임박 (<span id="count-warning">0</span>)</div>
+                        <div class="legend-item"><span class="dot danger"></span>위험 (<span id="count-danger">0</span>)</div>
+                    </div>
+                    <p class="status-guide">🔴 위험: D-3일 이내 &nbsp;·&nbsp; 🟠 임박: D-4~7일 &nbsp;·&nbsp; 🔵 안전: D-8일 이상</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>⚠️ 지금 빨리 먹어야 해요!</h3>
+                    </div>
+                    <div class="status-list" id="home-urgent-list">
+                        <!-- JS가 여기에 임박 재료 렌더링 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= 등록 ================= -->
+            <div id="page-register" class="page">
+                <div class="section-title">
+                    <h2>식재료 등록하기</h2>
+                    <p>사진을 찍고 유통기한을 적어 보관함을 채우세요.</p>
+                </div>
+
+                <input type="file" id="imageInput" accept="image/*" capture="environment" style="display:none">
+
+                <div class="camera-box" id="camera-box">
+                    <img id="previewImage" style="display:none; width:100%; height:100%; object-fit:cover; border-radius:16px;">
+                    <div id="camera-placeholder">
+                        <div class="camera-inner-icon">📸</div>
+                        <p class="camera-text">제품 사진 촬영하기</p>
+                        <p class="camera-subtext">사진을 찍으면 AI가 자동으로 제품을 분석합니다</p>
+                    </div>
+                </div>
+
+                <button type="button" class="btn-scan" id="scanButton">🔍 AI로 사진 분석하기</button>
+
+                <div class="form-container">
+                    <div class="form-group">
+                        <label for="food-name-field">식품 이름</label>
+                        <input type="text" id="food-name-field" placeholder="예: 서울우유 1L">
+                        <p class="field-warning" id="name-warning" style="display:none;">⚠️ 이름이 적혀 있지 않아요! 이름을 직접 적어주세요.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="food-date-field">유통기한 / 소비기한 입력</label>
+                        <input type="date" id="food-date-field">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="food-category">보관 위치 설정</label>
+                        <select id="food-category">
+                            <option value="fridge">냉장실</option>
+                            <option value="freezer">냉동실</option>
+                            <option value="pantry">실온 (팬트리)</option>
+                        </select>
+                    </div>
+
+                    <button type="button" class="btn-submit" id="saveButton">냉장고에 넣기</button>
+                </div>
+            </div>
+
+            <!-- ================= 레시피 ================= -->
+            <div id="page-recipe" class="page">
+                <div class="section-title">
+                    <h2>AI 추천 레시피</h2>
+                    <p>남은 기한이 별로 없는 음식 위주로 맞춤 레시피를 제안합니다.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>⏳ 유통기한 임박 음식 (Top 5)</h3>
+                        <span class="badge badge-danger">소비 권장</span>
+                    </div>
+
+                    <div class="food-list" id="recipe-food-list">
+                        <!-- JS가 여기에 임박순 Top5 렌더링 -->
+                    </div>
+                </div>
+
+                <div class="ai-button-wrapper">
+                    <button type="button" class="btn-ai-recipe" id="aiRecipeButton">
+                        <span class="ai-icon">✨</span> AI로 음식 레시피 생성
+                    </button>
+                </div>
+
+                <div class="card ai-result-card" id="ai-result-card" style="display:none;">
+                    <div class="card-header">
+                        <h3>🤖 AI 추천 결과</h3>
+                    </div>
+                    <pre id="ai-result-display">결과를 불러오는 중입니다...</pre>
+                </div>
+            </div>
+
+        </main>
+
+        <nav class="app-navbar">
+            <div class="nav-item" data-page="register" data-title="식품 등록">
+                <span class="nav-icon">📷</span>
+                <span class="nav-text">등록</span>
+            </div>
+            <div class="nav-item active" data-page="home" data-title="홈 현황">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-text">홈</span>
+            </div>
+            <div class="nav-item" data-page="recipe" data-title="추천 레시피">
+                <span class="nav-icon">🍳</span>
+                <span class="nav-text">레시피</span>
+            </div>
+        </nav>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
