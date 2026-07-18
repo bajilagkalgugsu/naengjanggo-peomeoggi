@@ -193,6 +193,22 @@ body {
 }
 .form-group input:focus, .form-group select:focus { border-color: #3b82f6; }
 
+/* 아이폰 사파리 date input 기본 스타일 초기화 - 높이 뻥튀기 + 아이콘 누락 문제 해결 */
+.form-group input[type="date"] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 48px;
+    line-height: 1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='18' rx='2'/><line x1='16' y1='2' x2='16' y2='6'/><line x1='8' y1='2' x2='8' y2='6'/><line x1='3' y1='10' x2='21' y2='10'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 20px;
+    padding-right: 44px;
+}
+.form-group input[type="date"]::-webkit-date-and-time-value {
+    text-align: left;
+}
+
 .form-group input.input-warning {
     border-color: #ef4444;
     box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
