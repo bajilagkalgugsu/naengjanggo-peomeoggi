@@ -482,7 +482,12 @@ aiRecipeButton.addEventListener("click", async () => {
     너는 냉장고 파먹기 요리사야.
     오늘 날짜는 ${todayStr}이고 내가 가진 식재료는 [${ingredientString}]이야.
     유통기한이 임박한 재료 위주로 소모할 수 있는 요리 레시피를 2~3개 추천하고 조리법도 친절하게 알려줘.
+    그리고 자취생이랑 노인들이 볼거니까 최대한 간결하고 보기 편하게 만들어줘.
     `;
+
+// 너는 냉장고 파먹기 요리사야.
+// 오늘 날짜는 ${todayStr}이고 내가 가진 식재료는 [${ingredientString}]이야.
+// 유통기한이 임박한 재료 위주로 소모할 수 있는 요리 레시피를 2~3개 추천하고 조리법도 친절하게 알려줘.
 
     try {
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
